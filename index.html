@@ -110,6 +110,7 @@
         font-size: 0.95rem;
         margin-bottom: 1.2rem;
         line-height: 1.6;
+        text-align: center;
       }
 
       .publications li b {
@@ -191,6 +192,25 @@
         cursor: pointer;
         font-weight: bold;
       }
+
+      .lightbox .arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 2rem;
+        color: white;
+        cursor: pointer;
+        font-weight: bold;
+        user-select: none;
+      }
+
+      .lightbox .arrow.left {
+        left: 30px;
+      }
+
+      .lightbox .arrow.right {
+        right: 30px;
+      }
     </style>
   </head>
   <body>
@@ -216,41 +236,60 @@
 
       <h2>Selected Publications</h2>
       <ul class="publications">
-        <li><b>Cho, H.</b> (2025). <a href="https://doi.org/10.14305/rt.lerner.2025.8" target="_blank">Younger grandparents provide less support...</a> <i>Population Health Research Brief Series</i>, <i>273</i>.</li>
-        <li><b>Cho, H.</b>, & Chin, M. (2024). <a href="https://doi.org/10.31693/KJPS.2024.09.47.3.4" target="_blank">Trends and characteristics...</a> <i>Korea Journal of Population Studies</i>, <i>47</i>(3), 93–115.</li>
-        <li><b>Cho, H.</b>, Kim, N., & Kim, K. (2024). <a href="https://doi.org/10.1177/07334648241249619" target="_blank">The role of late-life work...</a> <i>Journal of Applied Gerontology</i>, <i>43</i>(11), 1621–1629.</li>
-        <li><b>Cho, H.</b>, & Chin, M. (2023). <a href="https://doi.org/10.7466/JFBL.2023.41.3.81" target="_blank">Characteristics and life satisfaction...</a> <i>Journal of Families and Better Life</i>, <i>41</i>(3), 81–93.</li>
+        <li><b>Cho, H.</b> (2025). Younger grandparents provide less support to their grandchildren now than in the past, but support among older grandparents has remained stable. <i>Population Health Research Brief Series</i>, <i>273</i>.</li>
+        <li><b>Cho, H.</b>, & Chin, M. (2024). Trends and characteristics of four types of familial financial support among Korean sandwiched middle-aged adults. <i>Korea Journal of Population Studies</i>, <i>47</i>(3), 93–115.</li>
+        <li><b>Cho, H.</b>, Kim, N., & Kim, K. (2024). The role of late-life work among widowed adults in Korea: A buffer or burden for widow(er)s’ health? <i>Journal of Applied Gerontology</i>, <i>43</i>(11), 1621–1629.</li>
+        <li><b>Cho, H.</b>, & Chin, M. (2023). Characteristics and life satisfaction of young adults living with their parents by relative income status. <i>Journal of Families and Better Life</i>, <i>41</i>(3), 81–93.</li>
       </ul>
 
       <h2>Gallery</h2>
       <div class="gallery"> 
-        <a href="#" onclick="openLightbox('photo1.JPG')">
-          <img src="photo1.JPG" alt="Photo 1">
-        </a>
-        <a href="#" onclick="openLightbox('photo2.JPG')">
-          <img src="photo2.JPG" alt="Photo 2">
-        </a>
-        <a href="#" onclick="openLightbox('photo3.JPG')">
-          <img src="photo3.JPG" alt="Photo 3">
-        </a>
+        <a href="#" onclick="openLightbox(0)"><img src="photo1.JPG" alt="Photo 1"></a>
+        <a href="#" onclick="openLightbox(1)"><img src="photo2.JPG" alt="Photo 2"></a>
+        <a href="#" onclick="openLightbox(2)"><img src="photo3.JPG" alt="Photo 3"></a>
       </div>
     </div>
 
-    <!-- Custom Lightbox -->
-    <div class="lightbox" id="lightbox">
-      <span class="close" onclick="closeLightbox()">&times;</span>
+    <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+      <span class="close" onclick="closeLightbox(event)">&times;</span>
+      <span class="arrow left" onclick="navigate(-1, event)">&#10094;</span>
       <img id="lightbox-img" src="" alt="Large Image">
+      <span class="arrow right" onclick="navigate(1, event)">&#10095;</span>
     </div>
 
     <script>
-      function openLightbox(imageSrc) {
-        document.getElementById('lightbox-img').src = imageSrc;
-        document.getElementById('lightbox').classList.add('active');
+      const images = ['photo1.JPG', 'photo2.JPG', 'photo3.JPG'];
+      let currentIndex = 0;
+
+      function openLightbox(index) {
+        currentIndex = index;
+        const lightbox = document.getElementById('lightbox');
+        const img = document.getElementById('lightbox-img');
+        img.src = images[currentIndex];
+        lightbox.classList.add('active');
       }
 
-      function closeLightbox() {
-        document.getElementById('lightbox').classList.remove('active');
+      function closeLightbox(event) {
+        if (!event.target.closest('img') || event.target.classList.contains('close')) {
+          document.getElementById('lightbox').classList.remove('active');
+        }
       }
+
+      function navigate(direction, event) {
+        event.stopPropagation();
+        currentIndex = (currentIndex + direction + images.length) % images.length;
+        document.getElementById('lightbox-img').src = images[currentIndex];
+      }
+
+      document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+          document.getElementById('lightbox').classList.remove('active');
+        } else if (event.key === 'ArrowLeft') {
+          navigate(-1, event);
+        } else if (event.key === 'ArrowRight') {
+          navigate(1, event);
+        }
+      });
     </script>
   </body>
 </html>
