@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>Hyeonji Cho | PhD Student</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;600&display=swap" rel="stylesheet">
+    <!-- Lightbox CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet" />
     <style>
       body {
         margin: 0;
@@ -134,16 +136,17 @@
         margin-top: 1.5rem;
       }
 
-      .gallery img {
+      .gallery a img {
         width: 30%;
         aspect-ratio: 3 / 4;
         object-fit: cover;
         border-radius: 10px;
         box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         transition: transform 0.3s ease;
+        cursor: pointer;
       }
 
-      .gallery img:hover {
+      .gallery a img:hover {
         transform: scale(1.05);
       }
     </style>
@@ -192,10 +195,19 @@
 
       <h2>Gallery</h2>
       <div class="gallery"> 
-        <img src="photo1.JPG" alt="Photo 1">
-        <img src="photo2.JPG" alt="Photo 2">
-        <img src="photo3.JPG" alt="Photo 3">
+        <a href="photo1.JPG" data-lightbox="gallery" data-title="Photo 1">
+          <img src="photo1.JPG" alt="Photo 1">
+        </a>
+        <a href="photo2.JPG" data-lightbox="gallery" data-title="Photo 2">
+          <img src="photo2.JPG" alt="Photo 2">
+        </a>
+        <a href="photo3.JPG" data-lightbox="gallery" data-title="Photo 3">
+          <img src="photo3.JPG" alt="Photo 3">
+        </a>
       </div>
     </div>
+
+    <!-- Lightbox JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
   </body>
 </html>
