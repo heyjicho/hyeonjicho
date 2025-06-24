@@ -126,20 +126,21 @@
     }
 
     .gallery {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
     }
-    
+  
     .gallery img {
       width: 30%;
-      aspect-ratio: 4 / 3;
+      aspect-ratio: 3 / 4; /* 세로로 긴 직사각형 */
       object-fit: cover;
       border-radius: 10px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       transition: transform 0.3s ease;
+      cursor: pointer;
     }
     
     .gallery img:hover {
@@ -147,6 +148,7 @@
     }
     
   </style>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet" />
 </head>
 <body>
   <div class="container">
@@ -191,13 +193,14 @@
     </ul>
         
     <h2>Gallery</h2>
-    <div class="gallery"> 
-      <img src="photo1.JPG" alt="Photo 1">
-      <img src="photo2.JPG" alt="Photo 2">
-      <img src="photo3.JPG" alt="Photo 3">
+    <div class="gallery">
+      <a href="photo1.JPG" data-lightbox="gallery"><img src="photo1.jpg" alt="Photo 1"></a>
+      <a href="photo2.JPG" data-lightbox="gallery"><img src="photo2.jpg" alt="Photo 2"></a>
+      <a href="photo3.JPG" data-lightbox="gallery"><img src="photo3.jpg" alt="Photo 3"></a>
     </div>
   </div>
-
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
 </body>
 </html>
 
