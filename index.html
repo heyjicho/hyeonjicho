@@ -10,7 +10,7 @@
         margin: 0;
         padding: 0;
         font-family: 'Nunito', sans-serif;
-        background-color: #f9f9fb;
+        background-color: #ffffff;
         color: #333;
         display: flex;
         justify-content: center;
@@ -26,8 +26,6 @@
         margin: 3rem 1rem;
         padding: 2rem;
         background-color: white;
-        border-radius: 16px;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
       }
 
       /* ---------- Header (always visible) ---------- */
@@ -212,6 +210,12 @@
       }
 
       /* ---------- Life (gallery) ---------- */
+      .life-intro {
+        text-align: center;
+        font-size: 1.1rem;
+        margin: 0 0 1.5rem;
+      }
+
       .gallery {
         display: flex;
         flex-wrap: nowrap;          /* 줄바꿈 없이 한 줄로 */
@@ -220,7 +224,7 @@
         padding-bottom: 0.8rem;
         scroll-snap-type: x proximity;
       }
-      
+
       .gallery .photo {
         flex: 0 0 calc((100% - 2rem) / 3);   /* 한 화면에 3장씩 */
         margin: 0;
@@ -344,8 +348,6 @@
         .container {
           margin: 0;
           padding: 1.5rem;
-          border-radius: 0;
-          box-shadow: none;
           min-height: 100vh;
         }
 
@@ -384,10 +386,6 @@
         .social-icons img {
           width: 20px;
           height: 20px;
-        }
-
-        .gallery .photo {
-          width: 45%;
         }
 
         .publications li {
@@ -482,9 +480,16 @@
         <p class="life-intro">Jigsaw puzzles are amazing. I hope you agree.</p>
         <div class="gallery">
           <figure class="photo">
-            <button type="button" class="thumb" data-index="2" aria-label="Open photo 1"><img src="photo1.JPG" alt="Photo 1"></button>
-            <button type="button" class="thumb" data-index="2" aria-label="Open photo 2"><img src="photo2.JPG" alt="Photo 2"></button>
+            <button type="button" class="thumb" data-index="0" aria-label="Open photo 1"><img src="photo1.JPG" alt="Photo 1"></button>
+            <figcaption></figcaption>
+          </figure>
+          <figure class="photo">
+            <button type="button" class="thumb" data-index="1" aria-label="Open photo 2"><img src="photo2.JPG" alt="Photo 2"></button>
+            <figcaption></figcaption>
+          </figure>
+          <figure class="photo">
             <button type="button" class="thumb" data-index="2" aria-label="Open photo 3"><img src="photo3.JPG" alt="Photo 3"></button>
+            <figcaption></figcaption>
           </figure>
         </div>
       </section>
