@@ -248,11 +248,6 @@
         object-fit: cover;
         border-radius: 10px;
         box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        transition: transform 0.3s ease;
-      }
-
-      .gallery .thumb:hover img {
-        transform: scale(1.05);
       }
 
       .gallery .thumb:focus-visible {
@@ -388,6 +383,20 @@
           height: 20px;
         }
 
+        /* 모바일: 사진을 세로로 한 장씩 */
+        .gallery {
+          flex-direction: column;
+          overflow-x: visible;
+          scroll-snap-type: none;
+          gap: 1.5rem;
+          padding-bottom: 0;
+        }
+
+        .gallery .photo {
+          flex: none;
+          width: 100%;
+        }
+
         .publications li {
           font-size: 0.9rem;
           text-align: left;
@@ -477,7 +486,7 @@
 
       <!-- Life -->
       <section class="tab-panel" id="panel-life">
-        <p class="life-intro">Jigsaw puzzles are amazing. I hope you agree.</p>
+        <p class="life-intro">Jigsaw puzzles are amazing. I dare you to disagree.</p>
         <div class="gallery">
           <figure class="photo">
             <button type="button" class="thumb" data-index="0" aria-label="Open photo 1"><img src="photo1.JPG" alt="Photo 1"></button>
