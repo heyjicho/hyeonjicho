@@ -213,15 +213,17 @@
       /* ---------- Life (gallery) ---------- */
       .gallery {
         display: flex;
-        justify-content: center;
-        gap: 1.5rem 1rem;
-        flex-wrap: wrap;
-        margin-top: 1.5rem;
+        flex-wrap: nowrap;          /* 줄바꿈 없이 한 줄로 */
+        gap: 1rem;
+        overflow-x: auto;           /* 사진이 많으면 옆으로 스크롤 */
+        padding-bottom: 0.8rem;
+        scroll-snap-type: x proximity;
       }
-
+      
       .gallery .photo {
-        width: 30%;
+        flex: 0 0 calc((100% - 2rem) / 3);   /* 한 화면에 3장씩 */
         margin: 0;
+        scroll-snap-align: start;
       }
 
       .gallery .thumb {
@@ -476,10 +478,12 @@
 
       <!-- Life -->
       <section class="tab-panel" id="life">
+        <p class="life-intro">Jigsaw puzzles are amazing. I hope you agree.</p>
         <div class="gallery">
           <figure class="photo">
+            <button type="button" class="thumb" data-index="2" aria-label="Open photo 1"><img src="photo1.JPG" alt="Photo 1"></button>
+            <button type="button" class="thumb" data-index="2" aria-label="Open photo 2"><img src="photo2.JPG" alt="Photo 2"></button>
             <button type="button" class="thumb" data-index="2" aria-label="Open photo 3"><img src="photo3.JPG" alt="Photo 3"></button>
-            <figcaption>Jigsaw puzzles are amazing. I hope you agree.</figcaption>
           </figure>
         </div>
       </section>
