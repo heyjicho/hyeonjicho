@@ -430,7 +430,7 @@
       </header>
 
       <!-- Bio -->
-      <section class="tab-panel" id="bio">
+      <section class="tab-panel" id="panel-bio">
         <div class="bio-header">
           <img src="profile.JPG" alt="Profile Picture" class="profile">
           <div class="bio-info">
@@ -453,7 +453,7 @@
       </section>
 
       <!-- Research -->
-      <section class="tab-panel" id="research">
+      <section class="tab-panel" id="panel-research">
         <h2>Selected Publications</h2>
         <ul class="publications">
           <li><b>Cho, H.</b> (2025). <a href="https://doi.org/10.14305/rt.lerner.2025.8" target="_blank">Younger grandparents provide less support to their grandchildren now than in the past, but support among older grandparents has remained stable</a>. <i>Population Health Research Brief Series</i>, <i>273</i>.</li>
@@ -464,20 +464,20 @@
       </section>
 
       <!-- Teaching -->
-      <section class="tab-panel" id="teaching">
+      <section class="tab-panel" id="panel-teaching">
         <p class="empty-note">Teaching information will be updated soon.</p>
       </section>
 
       <!-- CV -->
-      <section class="tab-panel" id="cv">
+      <section class="tab-panel" id="panel-cv">
         <object data="CV_3.pdf#view=FitH" type="application/pdf" class="cv-viewer">
           <p>Your browser can't display the PDF here. <a href="CV_3.pdf" target="_blank">Open it in a new tab</a>.</p>
         </object>
       </section>
 
       <!-- Life -->
-      <section class="tab-panel" id="life">
-        <p class="life-intro">Jigsaw puzzles are amazing. I dare you to disagree.</p>
+      <section class="tab-panel" id="panel-life">
+        <p class="life-intro">Jigsaw puzzles are amazing. I hope you agree.</p>
         <div class="gallery">
           <figure class="photo">
             <button type="button" class="thumb" data-index="0" aria-label="Open photo 1"><img src="photo1.JPG" alt="Photo 1"></button>
@@ -510,10 +510,11 @@
       const panels = document.querySelectorAll('.tab-panel');
 
       function showTab(name) {
-        const valid = Array.from(panels).some(p => p.id === name);
+        // 섹션 id는 'panel-' 접두사가 붙어 있어서, 주소(#life 등)와 겹치지 않아 자동 스크롤이 일어나지 않아요
+        const valid = Array.from(panels).some(p => p.id === 'panel-' + name);
         if (!valid) name = DEFAULT_TAB;
 
-        panels.forEach(p => p.classList.toggle('active', p.id === name));
+        panels.forEach(p => p.classList.toggle('active', p.id === 'panel-' + name));
         tabLinks.forEach(a => {
           const isActive = a.dataset.tab === name;
           a.classList.toggle('active', isActive);
