@@ -38,12 +38,6 @@
         text-align: center;
       }
 
-      .degree {
-        font-size: 0.65em;
-        color: #666;
-        font-weight: normal;
-      }
-
       .tabs {
         display: flex;
         justify-content: center;
@@ -95,19 +89,21 @@
         color: #999;
         font-weight: 300;
         margin-top: 3rem;
+        text-align: center;
       }
-
+      
       /* ---------- Bio ---------- */
       .bio-header {
         display: flex;
-        align-items: center;      /* text block is vertically centered against the photo */
-        gap: 1.8rem;
+        align-items: center;       /* 사진과 글의 세로 중앙 맞춤 */
+        justify-content: center;   /* 사진 + 글 묶음을 가로 중앙으로 */
+        gap: 2.5rem;
       }
 
       img.profile {
         flex-shrink: 0;
-        width: 150px;
-        height: 150px;
+        width: 220px;
+        height: 220px;
         border-radius: 50%;
         object-fit: cover;
         margin: 0;
@@ -340,8 +336,8 @@
         }
 
         img.profile {
-          width: 120px;
-          height: 120px;
+          width: 160px;
+          height: 160px;
         }
 
         .bio-info .pronunciation {
@@ -387,7 +383,7 @@
 
       <!-- Header: stays on every tab -->
       <header>
-        <h1 class="site-title">Hyeonji Cho <span class="degree">(M.A.)</span></h1>
+        <h1 class="site-title">Hyeonji Cho</h1>
         <nav class="tabs" aria-label="Site sections">
           <a href="#bio" data-tab="bio">Bio</a>
           <a href="#research" data-tab="research">Research</a>
@@ -431,9 +427,9 @@
         </ul>
       </section>
 
-      <!-- Teaching (empty for now) -->
+      <!-- Teaching -->
       <section class="tab-panel" id="teaching">
-        <!-- Add teaching content here -->
+        <p class="empty-note">Teaching information will be updated soon.</p>
       </section>
 
       <!-- CV -->
