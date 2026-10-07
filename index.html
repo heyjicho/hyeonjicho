@@ -91,7 +91,7 @@
         margin-top: 3rem;
         text-align: center;
       }
-      
+
       /* ---------- Bio ---------- */
       .bio-header {
         display: flex;
@@ -214,13 +214,18 @@
       .gallery {
         display: flex;
         justify-content: center;
-        gap: 1rem;
+        gap: 1.5rem 1rem;
         flex-wrap: wrap;
         margin-top: 1.5rem;
       }
 
-      .gallery .thumb {
+      .gallery .photo {
         width: 30%;
+        margin: 0;
+      }
+
+      .gallery .thumb {
+        width: 100%;
         aspect-ratio: 3 / 4;
         display: block;
         position: relative;
@@ -249,6 +254,19 @@
         border-radius: 10px;
       }
 
+      .gallery figcaption {
+        margin-top: 0.7rem;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        color: #666;
+        text-align: center;
+      }
+
+      /* 설명을 비워두면 빈 공간이 생기지 않도록 숨김 */
+      .gallery figcaption:empty {
+        display: none;
+      }
+
       /* ---------- Lightbox ---------- */
       .lightbox {
         position: fixed;
@@ -273,7 +291,7 @@
 
       .lightbox img {
         max-width: 90vw;
-        max-height: 90vh;
+        max-height: 80vh;
         border-radius: 10px;
       }
 
@@ -304,6 +322,18 @@
 
       .lightbox .arrow.right {
         right: 30px;
+      }
+
+      .lightbox .lightbox-caption {
+        position: absolute;
+        bottom: 24px;
+        left: 0;
+        right: 0;
+        margin: 0;
+        padding: 0 4rem;
+        color: white;
+        text-align: center;
+        font-size: 1rem;
       }
 
       /* ---------- Mobile ---------- */
@@ -353,7 +383,7 @@
           height: 20px;
         }
 
-        .gallery .thumb {
+        .gallery .photo {
           width: 45%;
         }
 
@@ -374,6 +404,11 @@
           font-size: 1.8rem;
           top: 10px;
           right: 15px;
+        }
+
+        .lightbox .lightbox-caption {
+          padding: 0 2.5rem;
+          font-size: 0.9rem;
         }
       }
     </style>
@@ -411,7 +446,7 @@
 
         <div class="bio-section">
           <p class="bio">
-            I am a PhD student in <a href="https://falk.syr.edu/hdfs/" target="_blank">Human Development and Family Science</a> at Syracuse University and a graduate student associate at the <a href="https://asi.syr.edu" target="_blank">Aging Studies Institute (ASI)</a>. I earned both my Master’s and Bachelor’s degrees from Seoul National University in South Korea. Mostly using quantitative statistical analyses via STATA, my research focuses on grandparenting, family demography, and family policy in both U.S. and South Korean contexts.
+            Welcome to my website! I am a PhD student in <a href="https://falk.syr.edu/hdfs/" target="_blank">Human Development and Family Science</a> at Syracuse University and a graduate student associate at the <a href="https://asi.syr.edu" target="_blank">Aging Studies Institute (ASI)</a>. I earned both my Master’s and Bachelor’s degrees from Seoul National University in South Korea. Mostly using quantitative statistical analyses via STATA, my research focuses on grandparenting, family demography, and family policy in both U.S. and South Korean contexts.
           </p>
         </div>
       </section>
@@ -442,9 +477,10 @@
       <!-- Life -->
       <section class="tab-panel" id="life">
         <div class="gallery">
-          <button type="button" class="thumb" data-index="0" aria-label="Open photo 1"><img src="photo1.JPG" alt="Photo 1"></button>
-          <button type="button" class="thumb" data-index="1" aria-label="Open photo 2"><img src="photo2.JPG" alt="Photo 2"></button>
-          <button type="button" class="thumb" data-index="2" aria-label="Open photo 3"><img src="photo3.JPG" alt="Photo 3"></button>
+          <figure class="photo">
+            <button type="button" class="thumb" data-index="2" aria-label="Open photo 3"><img src="photo3.JPG" alt="Photo 3"></button>
+            <figcaption>Jigsaw puzzles are amazing. I hope you agree.</figcaption>
+          </figure>
         </div>
       </section>
     </div>
@@ -454,6 +490,7 @@
       <span class="arrow left" id="lightbox-prev">&#10094;</span>
       <img id="lightbox-img" src="" alt="Large Image">
       <span class="arrow right" id="lightbox-next">&#10095;</span>
+      <p class="lightbox-caption" id="lightbox-caption"></p>
     </div>
 
     <script>
@@ -489,13 +526,20 @@
 
       /* ---------- Lightbox ---------- */
       const images = ['photo1.JPG', 'photo2.JPG', 'photo3.JPG'];
+      const captions = Array.from(document.querySelectorAll('.gallery figcaption')).map(f => f.textContent);
       let currentIndex = 0;
       const lightbox = document.getElementById('lightbox');
       const lightboxImg = document.getElementById('lightbox-img');
+      const lightboxCaption = document.getElementById('lightbox-caption');
+
+      function showImage() {
+        lightboxImg.src = images[currentIndex];
+        lightboxCaption.textContent = captions[currentIndex] || '';
+      }
 
       function openLightbox(index) {
         currentIndex = index;
-        lightboxImg.src = images[currentIndex];
+        showImage();
         lightbox.classList.add('active');
       }
 
@@ -505,7 +549,7 @@
 
       function navigate(direction) {
         currentIndex = (currentIndex + direction + images.length) % images.length;
-        lightboxImg.src = images[currentIndex];
+        showImage();
       }
 
       document.querySelectorAll('.gallery .thumb').forEach(btn => {
